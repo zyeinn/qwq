@@ -1,0 +1,16 @@
+{
+    "MASSCAN": [
+        {
+            "PORT": "25565-25577",
+            "RATE": 50000
+        }
+    ],
+    "APPLICATION": [
+        {
+            "DB_USERNAME": "CHANGE_ME",
+            "DB_PASSWORD": "CHANGE_ME",
+            "DB_IP": "mongo",
+            "DB_PORT": 27017
+        }
+    ]
+}

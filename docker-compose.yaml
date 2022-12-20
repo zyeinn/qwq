@@ -1,0 +1,37 @@
+# docker-compose.yml
+version: "3.8"
+services:
+  mongo:
+    image: mongo:5.0
+    container_name: mongo
+    environment:
+        - MONGO_INITDB_ROOT_USERNAME=CHANGE_ME
+        - MONGO_INITDB_ROOT_PASSWORD=CHANGE_ME
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./database/db:/data/db
+  mongo-express:
+    image: mongo-express
+    container_name: mexpress
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=CHANGE_ME
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=CHANGE_ME
+      - ME_CONFIG_MONGODB_URL=mongodb://CHANGE_ME:CHANGE_ME@mongo:27017/?authSource=admin
+      - ME_CONFIG_BASICAUTH_USERNAME=CHANGE_ME
+      - ME_CONFIG_BASICAUTH_PASSWORD=CHANGE_ME
+    links:
+      - mongo
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+  
+  qwq-masscan:
+    build: .
+    container_name: masscan
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    restart: always

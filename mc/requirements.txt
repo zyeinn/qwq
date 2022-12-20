@@ -1,0 +1,5 @@
+asyncio-dgram==2.1.2
+dnspython==2.2.1
+mcstatus==10.0.0
+python-masscan==1.0.0
+pymongo==4.2.0
